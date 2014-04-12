@@ -4,5 +4,10 @@
     <string name="app_name">TimeOn</string>
     <string name="hello_world">Hello world!</string>
     <string name="string_test">-This is only a test-</string>
+    <string name="Welcome_message_content">Welcome to TimeOn! Name?</string>
+    <string name="Welcome_button_content">OK</string>
+    <string name="title_activity_display_message">My Message</string>
+    <string name="title_activity_display_message_ok">DisplayMessageOKActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
