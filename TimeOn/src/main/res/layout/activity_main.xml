@@ -25,7 +25,7 @@
         android:layout_height="match_parent"
         android:weightSum="1">
 
-        <EditText android:id="@+id/edit_message"
+        <EditText android:id="@+id/edit_name_message"
             android:layout_height="102dp"
             android:layout_weight="1"
             android:layout_width="0dp"

@@ -15,11 +15,11 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
-    /** Called when the user clicks the ok button */
+    /** Called when the user clicks the ok button **/
     public void okMessage(View view) {
         // send this to DisplayMessageActivity
         Intent intent = new Intent(this, DisplayMessageOKActivity.class);
-        EditText editText = (EditText) findViewById(R.id.edit_message);
+        EditText editText = (EditText) findViewById(R.id.edit_name_message);
         String message = editText.getText().toString();
 
         // add key-value pairs

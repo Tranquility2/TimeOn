@@ -7,7 +7,7 @@
     <string name="Welcome_message_content">Welcome to TimeOn! Name?</string>
     <string name="Welcome_button_content">OK</string>
     <string name="title_activity_display_message">My Message</string>
-    <string name="title_activity_display_message_ok">DisplayMessageOKActivity</string>
+    <string name="title_activity_display_message_ok">Your Name</string>
     <string name="action_settings">Settings</string>
 
 </resources>
