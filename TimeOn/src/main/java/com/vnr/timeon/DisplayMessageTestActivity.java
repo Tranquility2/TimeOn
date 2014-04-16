@@ -1,11 +1,16 @@
 package com.vnr.timeon;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Chronometer;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -26,15 +31,40 @@ public class DisplayMessageTestActivity extends ActionBarActivity {
         textView.setTextSize(40);
         textView.setText(message);
 
-        // Set the text view as the activity layout
-        // setContentView(textView);
+        // Create the Chronometer
+        Chronometer chronometer = new Chronometer(this);
+        chronometer.setId(R.id.new_chronometer_1);
+        chronometer.setTextSize(40);
+        chronometer.setOnClickListener(new View.OnClickListener() {
 
-        RelativeLayout rl = (RelativeLayout) findViewById(R.id.message_test_activity_layout);
-        RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams
-                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.leftMargin=50;
-        params.topMargin=50;
-        rl.addView(textView);
+            @Override
+            public void onClick(final View v) {
+                touchChronometer(v);
+            }
+        });
+
+        // Create the Button
+        Button button = new Button(this);
+        button.setText("Start");
+        button.setTextSize(40);
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(final View v) {
+                startTimerTest(v);
+            }
+        });
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(R.layout.activity_display_message_test, null);
+        // Find the LinearLayout element
+        LinearLayout ll = (LinearLayout) v.findViewById(R.id.linearLayoutMain);
+        // Add elements the LinearLayout
+        ll.addView(textView);
+        ll.addView(chronometer);
+        ll.addView(button);
+        // Display the view
+        setContentView(v);
     }
 
     @Override
@@ -51,9 +81,15 @@ public class DisplayMessageTestActivity extends ActionBarActivity {
 
     /** Called when the user clicks the timer button **/
     public void startTimerTest(View view) {
-        // send this to DisplayTimerTestActivity
-        Intent intent = new Intent(this, DisplayTimerTestActivity.class);
-        startActivity(intent);
+        Chronometer chronometer = (Chronometer) findViewById(R.id.new_chronometer_1);
+        chronometer.start();
+    }
+
+    /** Called when the user clicks the chronometer **/
+    public void touchChronometer(View view) {
+        Chronometer chronometer;
+        chronometer = (Chronometer) findViewById(R.id.new_chronometer_1);
+        chronometer.stop();
     }
 
 }
