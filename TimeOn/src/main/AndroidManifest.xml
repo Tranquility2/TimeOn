@@ -21,10 +21,6 @@
             android:label="@string/title_activity_display_message_test"
             android:parentActivityName="com.vnr.timeon.MainActivity" >
         </activity>
-        <activity
-            android:name="com.vnr.timeon.DisplayTimerTestActivity"
-            android:label="@string/title_activity_display_timer_test" >
-        </activity>
     </application>
 
 </manifest>
