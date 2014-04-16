@@ -3,7 +3,8 @@
 
     <string name="app_name">TimeOn</string>
     <string name="string_test">-This is only a test-</string>
-    <string name="Welcome_message_content">Welcome to TimeOn!\nName?</string>
+    <string name="Welcome_message_content">Welcome to TimeOn!</string>
+    <string name="Welcome_name_test">What is your name?</string>
     <string name="Welcome_button_content">OK</string>
     <string name="title_activity_display_message_test">Your Name</string>
     <string name="action_settings">Settings</string>
