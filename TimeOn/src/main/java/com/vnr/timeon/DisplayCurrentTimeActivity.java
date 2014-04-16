@@ -1,38 +1,79 @@
 package com.vnr.timeon;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
-public class DisplayCurrentTimeActivity extends ActionBarActivity {
+import android.app.ListActivity;
+import android.view.View;
+import android.widget.ArrayAdapter;
+
+import com.vnr.sql.CurrTimeDataSource;
+import com.vnr.models.CurrTime;
+
+public class DisplayCurrentTimeActivity extends ListActivity {
+
+    private CurrTimeDataSource datasource;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_current_time);
+
+        datasource = new CurrTimeDataSource(this);
+        datasource.open();
+
+        List<CurrTime> values = datasource.getAllTimes();
+
+        // use the SimpleCursorAdapter to show the
+        // elements in a ListView
+        ArrayAdapter<CurrTime> adapter = new ArrayAdapter<CurrTime>(this,
+                android.R.layout.simple_list_item_1, values);
+        setListAdapter(adapter);
     }
 
+    // Will be called via the onClick attribute
+    // of the buttons in main.xml
+    public void onClick(View view) {
+        @SuppressWarnings("unchecked")
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.display_current_time, menu);
-        return true;
-    }
+        ArrayAdapter<CurrTime> adapter = (ArrayAdapter<CurrTime>) getListAdapter();
+        CurrTime time = null;
+        switch (view.getId()) {
+            case R.id.add:
+                SimpleDateFormat dateFormat = new SimpleDateFormat(
+                        "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                Date current_time = new Date();
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+                time = datasource.createCurrentTime(dateFormat.format(current_time));
+                // save the new current time to the database
+                adapter.add(time);
+                break;
+            case R.id.delete:
+                if (getListAdapter().getCount() > 0) {
+                    time = (CurrTime) getListAdapter().getItem(0);
+                    datasource.deleteCurrTime(time);
+                    adapter.remove(time);
+                }
+                break;
         }
-        return super.onOptionsItemSelected(item);
+
+        adapter.notifyDataSetChanged();
     }
 
+    @Override
+    protected void onResume() {
+        datasource.open();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        datasource.close();
+        super.onPause();
+    }
 }
