@@ -42,4 +42,10 @@ public class MainActivity extends Activity {
         TextView txtView = (TextView) findViewById(R.id.Time_now);
         txtView.setText(formattedDate);
     }
+
+    public void insertCurrentTimeText(View view) {
+        Intent intent = new Intent(this, DisplayCurrentTimeActivity.class);
+
+        startActivity(intent);
+    }
 }

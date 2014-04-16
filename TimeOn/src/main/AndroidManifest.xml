@@ -17,13 +17,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DisplayMessageTestActivity"
+            android:name="com.vnr.timeon.DisplayMessageTestActivity"
             android:label="@string/title_activity_display_message_test"
             android:parentActivityName="com.vnr.timeon.MainActivity" >
         </activity>
         <activity
             android:name="com.vnr.timeon.DisplayTimerTestActivity"
             android:label="@string/title_activity_display_timer_test" >
+        </activity>
+        <activity
+            android:name="com.vnr.timeon.DisplayCurrentTimeActivity"
+            android:label="@string/title_activity_display_current_time"
+            android:parentActivityName="com.vnr.timeon.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainActivity" />
         </activity>
     </application>
 

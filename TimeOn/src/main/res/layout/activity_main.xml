@@ -62,6 +62,16 @@
         android:id="@+id/Button_update_time"
         android:layout_alignTop="@+id/Time_now"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />/>
+        android:layout_marginTop="35dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="insertCurrentTimeText"
+        android:text="@string/insert_current_time"
+        android:id="@+id/button"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/Button_update_time"
+        android:layout_alignStart="@+id/Button_update_time" />/>
 
 </RelativeLayout>
