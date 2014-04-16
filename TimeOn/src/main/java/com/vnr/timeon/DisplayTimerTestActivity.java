@@ -17,10 +17,11 @@ public class DisplayTimerTestActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_timer_test);
 
-        // Create the text view
+        // Create the Chronometer
         Chronometer chronometer = new Chronometer(this);
         chronometer.setId(R.id.new_chronometer_1);
         chronometer.setTextSize(40);
+        chronometer.setFormat("H:MM:SS");
         chronometer.start();
         chronometer.setOnClickListener(new View.OnClickListener() {
 
