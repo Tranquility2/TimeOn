@@ -29,7 +29,7 @@
         android:layout_alignParentTop="true"/>
 
     <Button
-        android:id="@+id/Button"
+        android:id="@+id/Button_name_enter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="okMessage"
@@ -39,5 +39,29 @@
         android:layout_alignParentEnd="true"
         android:layout_toRightOf="@+id/edit_name_message"
         android:layout_alignParentStart="false" />
+
+    <TextView
+        android:id="@+id/Time_now"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:hint="@string/string_test"
+        android:layout_marginBottom="157dp"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="updateTimeText"
+        android:text="Update time"
+        android:id="@+id/Button_update_time"
+        android:layout_alignTop="@+id/Time_now"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp" />/>
 
 </RelativeLayout>
