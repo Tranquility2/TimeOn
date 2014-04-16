@@ -1,9 +1,13 @@
 package com.vnr.timeon;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Chronometer;
+
 
 
 public class DisplayTimerTestActivity extends ActionBarActivity {
@@ -12,6 +16,24 @@ public class DisplayTimerTestActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_timer_test);
+
+        // Create the text view
+        Chronometer chronometer = new Chronometer(this);
+        chronometer.setId(R.id.new_chronometer_1);
+        chronometer.setTextSize(40);
+        chronometer.start();
+        chronometer.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(final View v) {
+                Chronometer chronometer;
+                chronometer = (Chronometer) findViewById(R.id.new_chronometer_1);
+                chronometer.stop();
+                }
+        });
+
+        // Set the text view as the activity layout
+        setContentView(chronometer);
     }
 
 

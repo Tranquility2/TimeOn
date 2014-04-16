@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -24,7 +27,14 @@ public class DisplayMessageTestActivity extends ActionBarActivity {
         textView.setText(message);
 
         // Set the text view as the activity layout
-        setContentView(textView);
+        // setContentView(textView);
+
+        RelativeLayout rl = (RelativeLayout) findViewById(R.id.message_test_activity_layout);
+        RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams
+                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.leftMargin=50;
+        params.topMargin=50;
+        rl.addView(textView);
     }
 
     @Override
@@ -37,6 +47,13 @@ public class DisplayMessageTestActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /** Called when the user clicks the timer button **/
+    public void startTimerTest(View view) {
+        // send this to DisplayTimerTestActivity
+        Intent intent = new Intent(this, DisplayTimerTestActivity.class);
+        startActivity(intent);
     }
 
 }
