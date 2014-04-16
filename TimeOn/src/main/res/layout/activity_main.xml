@@ -4,12 +4,6 @@
     android:layout_height="match_parent"
     tools:context="${packageName}.${activityClass}">
 
-     <TextView
-       android:text="@string/hello_world"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-         android:id="@+id/textView2" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,6 +23,7 @@
             android:layout_height="102dp"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:singleLine="false"
             android:hint="@string/Welcome_message_content"/>
 
         <Button

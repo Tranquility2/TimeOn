@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
     /** Called when the user clicks the ok button **/
     public void okMessage(View view) {
         // send this to DisplayMessageActivity
-        Intent intent = new Intent(this, DisplayMessageOKActivity.class);
+        Intent intent = new Intent(this, DisplayMessageTestActivity.class);
         EditText editText = (EditText) findViewById(R.id.edit_name_message);
         String message = editText.getText().toString();
 
