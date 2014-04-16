@@ -14,5 +14,6 @@
     <string name="insert_current_time">Insert Time</string>
     <string name="title_activity_display_current_time">DisplayCurrentTimeActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="update_time">Update Time</string>
 
 </resources>

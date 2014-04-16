@@ -2,16 +2,16 @@ package com.vnr.timeon;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 
@@ -29,7 +29,7 @@ public class DisplayMessageTestActivity extends ActionBarActivity {
         // Create the text view
         TextView textView = new TextView(this);
         textView.setTextSize(40);
-        textView.setText(message);
+        textView.setText("Hello " + message);
 
         // Create the Chronometer
         Chronometer chronometer = new Chronometer(this);
@@ -42,12 +42,15 @@ public class DisplayMessageTestActivity extends ActionBarActivity {
                 touchChronometer(v);
             }
         });
+        chronometer.setBase(SystemClock.elapsedRealtime());
 
         // Create the Button
-        Button button = new Button(this);
-        button.setText("Start");
-        button.setTextSize(40);
-        button.setOnClickListener(new View.OnClickListener() {
+        Switch switcher = new Switch(this);
+        switcher.setId(R.id.new_switcher_1);
+        switcher.setTextOn("Start");
+        switcher.setTextOff("Stop");
+        switcher.setTextSize(40);
+        switcher.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
@@ -62,7 +65,7 @@ public class DisplayMessageTestActivity extends ActionBarActivity {
         // Add elements the LinearLayout
         ll.addView(textView);
         ll.addView(chronometer);
-        ll.addView(button);
+        ll.addView(switcher);
         // Display the view
         setContentView(v);
     }
@@ -81,15 +84,27 @@ public class DisplayMessageTestActivity extends ActionBarActivity {
 
     /** Called when the user clicks the timer button **/
     public void startTimerTest(View view) {
-        Chronometer chronometer = (Chronometer) findViewById(R.id.new_chronometer_1);
-        chronometer.start();
+
+        Switch act_switcher = (Switch) view;
+        Chronometer chronometer = (Chronometer) this.findViewById(R.id.new_chronometer_1);
+        boolean on = act_switcher.isChecked();
+        System.out.println(on);                     //*Debug*//
+        System.out.println(chronometer.getId());    //*Debug*//
+        System.out.println(act_switcher.getId());   //*Debug*//
+        if (on) {
+            // Enable
+            chronometer.start();
+        } else {
+            // Disable
+            chronometer.stop();
+        }
     }
 
     /** Called when the user clicks the chronometer **/
     public void touchChronometer(View view) {
-        Chronometer chronometer;
-        chronometer = (Chronometer) findViewById(R.id.new_chronometer_1);
-        chronometer.stop();
+        Chronometer chronometer = (Chronometer) view;
+        System.out.println(chronometer.getId());    //*Debug*//
+        chronometer.setBase(SystemClock.elapsedRealtime());
     }
 
 }

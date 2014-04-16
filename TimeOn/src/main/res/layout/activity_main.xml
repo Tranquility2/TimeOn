@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="updateTimeText"
-        android:text="Update time"
+        android:text="@string/update_time"
         android:id="@+id/Button_update_time"
         android:layout_alignTop="@+id/Time_now"
         android:layout_centerHorizontal="true"
