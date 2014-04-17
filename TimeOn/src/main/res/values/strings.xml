@@ -11,7 +11,7 @@
     <string name="title_activity_display_timer_test">DisplayTimerTestActivity</string>
     <string name="timer_on_test">Timer on!</string>
     <string name="start_the_timer">Start the timer</string>
-    <string name="insert_current_time">Insert Time</string>
+    <string name="insert_current_time">Insert Time Test</string>
     <string name="title_activity_display_current_time">DisplayCurrentTimeActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="update_time">Update Time</string>

@@ -16,6 +16,10 @@ import android.widget.TextView;
 
 
 public class DisplayMessageTestActivity extends ActionBarActivity {
+    TextView textView;
+    Chronometer chronometer;
+    Switch switcher;
+    long time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +31,12 @@ public class DisplayMessageTestActivity extends ActionBarActivity {
         String message = intent.getStringExtra(MainActivity.EXTRA_NAME_MESSAGE);
 
         // Create the text view
-        TextView textView = new TextView(this);
+        textView = new TextView(this);
         textView.setTextSize(40);
         textView.setText("Hello " + message);
 
         // Create the Chronometer
-        Chronometer chronometer = new Chronometer(this);
+        chronometer = new Chronometer(this);
         chronometer.setId(R.id.new_chronometer_1);
         chronometer.setTextSize(40);
         chronometer.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +49,7 @@ public class DisplayMessageTestActivity extends ActionBarActivity {
         chronometer.setBase(SystemClock.elapsedRealtime());
 
         // Create the Button
-        Switch switcher = new Switch(this);
+        switcher = new Switch(this);
         switcher.setId(R.id.new_switcher_1);
         switcher.setTextOn("Start");
         switcher.setTextOff("Stop");
@@ -88,14 +92,18 @@ public class DisplayMessageTestActivity extends ActionBarActivity {
         Switch act_switcher = (Switch) view;
         Chronometer chronometer = (Chronometer) this.findViewById(R.id.new_chronometer_1);
         boolean on = act_switcher.isChecked();
-        System.out.println(on);                     //*Debug*//
-        System.out.println(chronometer.getId());    //*Debug*//
-        System.out.println(act_switcher.getId());   //*Debug*//
+        System.out.println(
+                String.valueOf(on) +
+                String.valueOf(chronometer.getId()) +
+                String.valueOf(act_switcher.getId()));                     //*Debug*//
+
         if (on) {
             // Enable
+            chronometer.setBase(SystemClock.elapsedRealtime() + time);
             chronometer.start();
         } else {
             // Disable
+            time =  chronometer.getBase() + SystemClock.elapsedRealtime();
             chronometer.stop();
         }
     }
@@ -103,7 +111,6 @@ public class DisplayMessageTestActivity extends ActionBarActivity {
     /** Called when the user clicks the chronometer **/
     public void touchChronometer(View view) {
         Chronometer chronometer = (Chronometer) view;
-        System.out.println(chronometer.getId());    //*Debug*//
         chronometer.setBase(SystemClock.elapsedRealtime());
     }
 

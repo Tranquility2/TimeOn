@@ -46,13 +46,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:hint="@string/string_test"
-        android:layout_marginBottom="157dp"
-        android:layout_above="@+id/textView"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="false"
         android:layout_alignWithParentIfMissing="false"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"
+        android:layout_above="@+id/Button_update_time"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -60,9 +58,8 @@
         android:onClick="updateTimeText"
         android:text="@string/update_time"
         android:id="@+id/Button_update_time"
-        android:layout_alignTop="@+id/Time_now"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
+        android:layout_above="@+id/textView"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -70,8 +67,9 @@
         android:onClick="insertCurrentTimeText"
         android:text="@string/insert_current_time"
         android:id="@+id/button"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/Button_update_time"
-        android:layout_alignStart="@+id/Button_update_time" />/>
+        android:layout_marginTop="49dp"
+        android:layout_below="@+id/Button_name_enter"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
