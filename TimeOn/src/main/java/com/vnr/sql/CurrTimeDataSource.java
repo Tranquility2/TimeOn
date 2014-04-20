@@ -20,7 +20,7 @@ public class CurrTimeDataSource {
     private SQLiteDatabase database;
     private MySQLiteHelper dbHelper;
     private String[] allColumns = { MySQLiteHelper.COLUMN_ID,
-            MySQLiteHelper.COLUMN_CURR_TIME };
+            MySQLiteHelper.COLUMN_CURR_TIME, MySQLiteHelper.COLUMN_BTN_NAME, MySQLiteHelper.COLUMN_TIMER };
 
     public CurrTimeDataSource(Context context) {
         dbHelper = new MySQLiteHelper(context);
@@ -34,9 +34,13 @@ public class CurrTimeDataSource {
         dbHelper.close();
     }
 
-    public CurrTime createCurrentTime(String curr_time) {
+    public CurrTime createCurrentTime(String curr_time, String btn_name, String timer) {
         ContentValues values = new ContentValues();
+
         values.put(MySQLiteHelper.COLUMN_CURR_TIME, curr_time);
+        values.put(MySQLiteHelper.COLUMN_BTN_NAME, btn_name);
+        values.put(MySQLiteHelper.COLUMN_TIMER, timer);
+
         long insertId = database.insert(MySQLiteHelper.TABLE_CURR_TIME, null,
                 values);
         Cursor cursor = database.query(MySQLiteHelper.TABLE_CURR_TIME,
@@ -75,8 +79,11 @@ public class CurrTimeDataSource {
 
     private CurrTime cursorToCurrTime(Cursor cursor) {
         CurrTime curr_time = new CurrTime();
+
         curr_time.setId(cursor.getLong(0));
         curr_time.setDateTime(cursor.getString(1));
+        curr_time.setBtnName(cursor.getString(2));
+        curr_time.setTimerValue(cursor.getString(3));
 
         return curr_time;
     }

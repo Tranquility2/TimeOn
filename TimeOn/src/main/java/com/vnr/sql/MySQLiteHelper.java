@@ -11,18 +11,22 @@ import android.util.Log;
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
-    public static final String TABLE_CURR_TIME = "time";
-    public static final String COLUMN_ID = "_id";
+    public static final String TABLE_CURR_TIME  = "time";
+    public static final String COLUMN_ID        = "_id";
     public static final String COLUMN_CURR_TIME = "curr_time";
+    public static final String COLUMN_BTN_NAME  = "btn_name";
+    public static final String COLUMN_TIMER     = "timer";
 
     private static final String DATABASE_NAME = "time.db";
     private static final int DATABASE_VERSION = 1;
 
     // Database creation sql statement
-    private static final String DATABASE_CREATE = "create table "
-            + TABLE_CURR_TIME + "(" + COLUMN_ID
-            + " integer primary key autoincrement, " + COLUMN_CURR_TIME
-            + " text not null);";
+    private static final String DATABASE_CREATE = "create table " + TABLE_CURR_TIME + "("
+            + COLUMN_ID + " integer primary key autoincrement, "
+            + COLUMN_CURR_TIME + " text not null, "
+            + COLUMN_BTN_NAME + " text not null, "
+            + COLUMN_TIMER + " text not null "
+            + ");";
 
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -42,5 +46,4 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CURR_TIME);
         onCreate(db);
     }
-
 }
