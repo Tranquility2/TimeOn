@@ -44,18 +44,6 @@ public class MainActivity extends Activity {
         }
     }
 
-    /** Called when the user clicks the update_time button **/
-    public void updateTimeText(View view) {
-        Calendar c = Calendar.getInstance();
-        System.out.println("Current time => "+c.getTime());
-
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String formattedDate = df.format(c.getTime());
-
-        TextView txtView = (TextView) findViewById(R.id.Time_now);
-        txtView.setText(formattedDate);
-    }
-
     public void insertCurrentTimeText(View view) {
         Intent intent = new Intent(this, DisplayCurrentTimeActivity.class);
 

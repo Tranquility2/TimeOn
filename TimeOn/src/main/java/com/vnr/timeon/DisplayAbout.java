@@ -13,6 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class DisplayAbout extends ActionBarActivity {
     TextView textView;
 
@@ -52,4 +55,15 @@ public class DisplayAbout extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /** Called when the user clicks the update_time button **/
+    public void updateTimeText(View view) {
+        Calendar c = Calendar.getInstance();
+        System.out.println("Current time => "+c.getTime());
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = df.format(c.getTime());
+
+        TextView txtView = (TextView) findViewById(R.id.Time_now);
+        txtView.setText(formattedDate);
+    }
 }

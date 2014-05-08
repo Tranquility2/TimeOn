@@ -20,7 +20,7 @@
         android:text="@string/Welcome_message_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:id="@+id/textView2" />
+        android:id="@+id/textView2" /><![CDATA[
 
     Button
         android:id="@+id/Button_name_enter"
@@ -34,26 +34,9 @@
         android:layout_toRightOf="@+id/edit_name_message"
         android:layout_alignParentStart="false" />
 
-    <TextView
-        android:id="@+id/Time_now"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:hint="@string/string_test"
-        android:layout_alignWithParentIfMissing="false"
-        android:gravity="center_horizontal"
-        android:layout_above="@+id/Button_update_time"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="updateTimeText"
-        android:text="@string/update_time"
-        android:id="@+id/Button_update_time"
-        android:layout_above="@+id/textView"
-        android:layout_centerHorizontal="true" />
+
+    ]]>
 
     <Button
         android:layout_width="match_parent"
