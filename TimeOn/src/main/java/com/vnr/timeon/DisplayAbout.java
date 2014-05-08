@@ -63,7 +63,7 @@ public class DisplayAbout extends ActionBarActivity {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String formattedDate = df.format(c.getTime());
 
-        TextView txtView = (TextView) findViewById(R.id.Time_now);
+        TextView txtView = (TextView) findViewById(R.id.textView_UpdateTime);
         txtView.setText(formattedDate);
     }
 }
