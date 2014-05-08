@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vnr.timeon" >
-<uses-permission android:name="android.permission.READ_CALENDAR"/>
-<uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <!-- Allows application to view phone state like using readLine1Number() -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!-- Required to access the Contacts Provider and user profile -->
+    <uses-permission android:name="android.permission.READ_PROFILE"/>
 
     <application
 
@@ -10,6 +15,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name="com.vnr.timeon.MainActivity"
             android:label="@string/app_name" >
@@ -18,11 +24,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name="com.vnr.timeon.DisplayMessageTestActivity"
-            android:label="@string/title_activity_display_message_test"
+            android:name=".DisplayAbout"
+            android:label="@string/title_activity_display_about"
             android:parentActivityName="com.vnr.timeon.MainActivity" >
         </activity>
+
         <activity
             android:name="com.vnr.timeon.DisplayCurrentTimeActivity"
             android:label="@string/title_activity_display_current_time"

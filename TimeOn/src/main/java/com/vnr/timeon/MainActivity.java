@@ -3,8 +3,10 @@ package com.vnr.timeon;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -19,16 +21,27 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
-    /** Called when the user clicks the ok button **/
-    public void okMessage(View view) {
-        // send this to DisplayMessageActivity
-        Intent intent = new Intent(this, DisplayMessageTestActivity.class);
-        EditText editText = (EditText) findViewById(R.id.edit_name_message);
-        String message = editText.getText().toString();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
 
-        // add key-value pairs
-        intent.putExtra(EXTRA_NAME_MESSAGE, message);
-        startActivity(intent);
+    /** Called when the user click on the about menu **/
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.about:
+                // send this to DisplayAboutActivity
+                Intent intent = new Intent(this, DisplayAbout.class);
+                // get the version
+                String value = Integer.toString(android.os.Build.VERSION.SDK_INT);
+                // add key-value pairs
+                intent.putExtra(EXTRA_NAME_MESSAGE, value);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /** Called when the user clicks the update_time button **/
