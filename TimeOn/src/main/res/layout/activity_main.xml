@@ -1,52 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
     tools:context="${packageName}.${activityClass}">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/string_test"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/textView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/Welcome_message_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:id="@+id/textView2" /><![CDATA[
-
-    Button
-        android:id="@+id/Button_name_enter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="okMessage"
-        android:text="@string/Welcome_button_content"
-        android:layout_alignTop="@+id/edit_name_message"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/edit_name_message"
-        android:layout_alignParentStart="false" />
-
-
-
-    ]]>
-
-    <Button
+    <LinearLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="insertCurrentTimeText"
-        android:text="@string/insert_current_time"
-        android:id="@+id/button"
-        android:layout_marginTop="39dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="match_parent" >
+    </LinearLayout>
 
 </RelativeLayout>

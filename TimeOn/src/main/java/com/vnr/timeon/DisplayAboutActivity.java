@@ -16,7 +16,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class DisplayAbout extends ActionBarActivity {
+public class DisplayAboutActivity extends ActionBarActivity {
     TextView textView;
 
     @Override

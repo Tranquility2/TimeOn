@@ -10,5 +10,8 @@
     <string name="title_activity_display_current_time">DisplayCurrentTimeActivity</string>
     <string name="update_time">Update Time</string>
     <string name="title_activity_display_about">About</string>
+    <string name="ui_tabname_Home">Home</string>
+    <string name="ui_tabname_Progress">Progress</string>
+    <string name="ui_tabname_Statistics">Statistics</string>
 
 </resources>
