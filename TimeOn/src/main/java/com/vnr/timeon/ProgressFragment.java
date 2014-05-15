@@ -124,22 +124,27 @@ public class ProgressFragment extends Fragment {
         /* Create the table */
         TableLayout tl_main = (TableLayout) view.findViewById(R.id.table_current_time);
         TableRow tbrow_header = new TableRow(getActivity());
+
         TextView tv_num = new TextView(getActivity());
         tv_num.setText("  ");
         tv_num.setTextColor(Color.WHITE);
         tbrow_header.addView(tv_num);
+
         TextView tv_btn = new TextView(getActivity());
         tv_btn.setText(" Button ");
         tv_btn.setTextColor(Color.WHITE);
         tbrow_header.addView(tv_btn);
+
         TextView tv_date = new TextView(getActivity());
         tv_date.setText(" Date ");
         tv_date.setTextColor(Color.WHITE);
         tbrow_header.addView(tv_date);
+
         TextView tv_time = new TextView(getActivity());
         tv_time.setText(" Time ");
         tv_time.setTextColor(Color.WHITE);
         tbrow_header.addView(tv_time);
+
         tl_main.addView(tbrow_header);
 
         datasource = new CurrTimeDataSource(getActivity());
@@ -258,29 +263,21 @@ public class ProgressFragment extends Fragment {
         TextView tv_row_num = new TextView(getActivity());
         tv_row_num.setText(currTime.getId() + ".");
         tv_row_num.setTextColor(Color.WHITE);
-        tv_row_num.setGravity(Gravity.CENTER);
-        tv_row_num.setPadding(0, 5, 0, 5);
         tbrow_new.addView(tv_row_num);
 
         TextView tv_row_btn = new TextView(getActivity());
         tv_row_btn.setText(currTime.getBtnName());
         tv_row_btn.setTextColor(Color.WHITE);
-        tv_row_btn.setGravity(Gravity.CENTER);
-        tv_row_btn.setPadding(0, 5, 0, 5);
         tbrow_new.addView(tv_row_btn);
 
         TextView tv_row_date = new TextView(getActivity());
         tv_row_date.setText(currTime.getDateTime());
         tv_row_date.setTextColor(Color.WHITE);
-        tv_row_date.setGravity(Gravity.CENTER);
-        tv_row_date.setPadding(0, 5, 0, 5);
         tbrow_new.addView(tv_row_date);
 
         TextView tv_row_time = new TextView(getActivity());
         tv_row_time.setText(currTime.getTimerValue());
         tv_row_time.setTextColor(Color.WHITE);
-        tv_row_time.setGravity(Gravity.CENTER);
-        tv_row_time.setPadding(0, 5, 0, 5);
         tbrow_new.addView(tv_row_time);
 
         tl_main.addView(tbrow_new);

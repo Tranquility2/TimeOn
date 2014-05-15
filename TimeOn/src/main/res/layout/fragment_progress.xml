@@ -55,9 +55,15 @@
 
             <TableLayout
                 android:id="@+id/table_current_time"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true" >
+                android:layout_centerHorizontal="true"
+                android:layout_margin="1dp"
+                android:divider="#fffffa42"
+                android:dividerPadding="25dp"
+                android:focusable="false"
+                android:showDividers="middle|beginning|end"
+                android:gravity="left">
             </TableLayout>
 
         </RelativeLayout>
