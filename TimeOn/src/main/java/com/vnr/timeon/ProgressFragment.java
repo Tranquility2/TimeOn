@@ -2,16 +2,22 @@ package com.vnr.timeon;
 
 import android.app.Activity;
 import android.app.ListFragment;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.SystemClock;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.vnr.models.CurrTime;
 import com.vnr.sql.CurrTimeDataSource;
@@ -31,7 +37,7 @@ import java.util.Locale;
  * create an instance of this fragment.
  *
  */
-public class ProgressFragment extends ListFragment {
+public class ProgressFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -40,6 +46,7 @@ public class ProgressFragment extends ListFragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private View   mFragmentView = null;
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -83,20 +90,6 @@ public class ProgressFragment extends ListFragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-    /*
-    Timer code that was imported from Activity
-     */
-        datasource = new CurrTimeDataSource(getActivity());
-        datasource.open();
-
-        List<CurrTime> values = datasource.getAllTimes();
-
-        // use the SimpleCursorAdapter to show the
-        // elements in a ListView
-        ArrayAdapter<CurrTime> adapter = new ArrayAdapter<CurrTime>(getActivity(), android.R.layout.simple_list_item_1, values);
-        setListAdapter(adapter);
-
     }
 
     @Override
@@ -104,6 +97,7 @@ public class ProgressFragment extends ListFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_progress, container, false);
+        setFragmentView(view);
 
         Button buttonStart = (Button) view.findViewById(R.id.Start);
         buttonStart.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +120,36 @@ public class ProgressFragment extends ListFragment {
                 onClickFragment(v);
             }
         });
+
+        /* Create the table */
+        TableLayout tl_main = (TableLayout) view.findViewById(R.id.table_current_time);
+        TableRow tbrow_header = new TableRow(getActivity());
+        TextView tv_num = new TextView(getActivity());
+        tv_num.setText("  ");
+        tv_num.setTextColor(Color.WHITE);
+        tbrow_header.addView(tv_num);
+        TextView tv_btn = new TextView(getActivity());
+        tv_btn.setText(" Button ");
+        tv_btn.setTextColor(Color.WHITE);
+        tbrow_header.addView(tv_btn);
+        TextView tv_date = new TextView(getActivity());
+        tv_date.setText(" Date ");
+        tv_date.setTextColor(Color.WHITE);
+        tbrow_header.addView(tv_date);
+        TextView tv_time = new TextView(getActivity());
+        tv_time.setText(" Time ");
+        tv_time.setTextColor(Color.WHITE);
+        tbrow_header.addView(tv_time);
+        tl_main.addView(tbrow_header);
+
+        datasource = new CurrTimeDataSource(getActivity());
+        datasource.open();
+
+        List<CurrTime> values = datasource.getAllTimes();
+
+        for (int i = 0; i < values.size(); i++) {
+            addRowToTable(values.get(i));
+        }
 
         return view;
     }
@@ -187,19 +211,18 @@ public class ProgressFragment extends ListFragment {
     public void onClickFragment(View view) {
         @SuppressWarnings("unchecked")
 
-        ArrayAdapter<CurrTime> adapter = (ArrayAdapter<CurrTime>) getListAdapter();
-        CurrTime time = null;
+        //ArrayAdapter<CurrTime> adapter = (ArrayAdapter<CurrTime>) getListAdapter();
         String btn_name = ((Button)view).getText().toString();
-        String chrono_val = null;
         SimpleDateFormat dateFormat = new SimpleDateFormat(
                 "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         Date current_time = new Date();
         Chronometer chrono_timer = (Chronometer) getActivity().findViewById(R.id.chronometer_timer);
 
-        chrono_val = chrono_timer.getText().toString();
-        time = datasource.createCurrentTime(dateFormat.format(current_time), btn_name, chrono_val);
+        String chrono_val = chrono_timer.getText().toString();
+        CurrTime time = datasource.createCurrentTime(dateFormat.format(current_time), btn_name, chrono_val);
         // save the new current time to the database
-        adapter.add(time);
+        //adapter.add(time);
+        addRowToTable(time);
 
         switch (view.getId()) {
             case R.id.Start:
@@ -223,7 +246,51 @@ public class ProgressFragment extends ListFragment {
 
             // TODO: Add default case
         }
+        //adapter.notifyDataSetChanged();
+    }
 
-        adapter.notifyDataSetChanged();
+    public void addRowToTable(CurrTime currTime){
+        TableLayout tl_main = (TableLayout)getFragmentView().findViewById(R.id.table_current_time);
+        TableRow tbrow_new = new TableRow(getActivity());
+        LayoutParams rowLayParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        tbrow_new.setLayoutParams(rowLayParams);
+
+        TextView tv_row_num = new TextView(getActivity());
+        tv_row_num.setText(currTime.getId() + ".");
+        tv_row_num.setTextColor(Color.WHITE);
+        tv_row_num.setGravity(Gravity.CENTER);
+        tv_row_num.setPadding(0, 5, 0, 5);
+        tbrow_new.addView(tv_row_num);
+
+        TextView tv_row_btn = new TextView(getActivity());
+        tv_row_btn.setText(currTime.getBtnName());
+        tv_row_btn.setTextColor(Color.WHITE);
+        tv_row_btn.setGravity(Gravity.CENTER);
+        tv_row_btn.setPadding(0, 5, 0, 5);
+        tbrow_new.addView(tv_row_btn);
+
+        TextView tv_row_date = new TextView(getActivity());
+        tv_row_date.setText(currTime.getDateTime());
+        tv_row_date.setTextColor(Color.WHITE);
+        tv_row_date.setGravity(Gravity.CENTER);
+        tv_row_date.setPadding(0, 5, 0, 5);
+        tbrow_new.addView(tv_row_date);
+
+        TextView tv_row_time = new TextView(getActivity());
+        tv_row_time.setText(currTime.getTimerValue());
+        tv_row_time.setTextColor(Color.WHITE);
+        tv_row_time.setGravity(Gravity.CENTER);
+        tv_row_time.setPadding(0, 5, 0, 5);
+        tbrow_new.addView(tv_row_time);
+
+        tl_main.addView(tbrow_new);
+    }
+
+    public View getFragmentView() {
+        return mFragmentView;
+    }
+
+    public void setFragmentView(View mFragmentView) {
+        this.mFragmentView = mFragmentView;
     }
 }
